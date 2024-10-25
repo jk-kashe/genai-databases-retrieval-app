@@ -273,7 +273,7 @@ def generate_list_tickets(client: aiohttp.ClientSession):
 
 # Tools for agent
 async def initialize_tools(client: aiohttp.ClientSession):
-    toolbox_client = ToolboxClient(BASE_URL)
+    toolbox_client = ToolboxClient(BASE_URL, client)
     return await toolbox_client.load_toolset()
 
 
