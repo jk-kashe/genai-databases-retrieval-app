@@ -9,7 +9,7 @@ sources:
     password: postgres
 tools:
   search_airports:
-    kind: cloud-sql-postgres-generic
+    kind: postgres-sql
     source: my-pg-instance
     description: |
       Use this tool to list all airports matching search criteria.
@@ -51,7 +51,7 @@ tools:
       AND (CAST($3 AS TEXT) IS NULL OR name ILIKE '%' || $3 || '%')
       LIMIT 10
   search_flights_by_number:
-    kind: cloud-sql-postgres-generic
+    kind: postgres-sql
     source: my-pg-instance
     description: |
       Use this tool to get information for a specific flight.
@@ -85,7 +85,7 @@ tools:
       AND flight_number = $2
       LIMIT 10
   list_flights:
-    kind: cloud-sql-postgres-generic
+    kind: postgres-sql
     source: my-pg-instance
     description: |
       Use this tool to list flights information matching search criteria.
@@ -130,7 +130,7 @@ tools:
       AND departure_time < CAST($3 AS timestamp) + interval '1 day'
       LIMIT 10
   search_amenities:
-    kind: cloud-sql-postgres-generic
+    kind: postgres-sql
     source: my-pg-instance
     description: |
       Use this tool to search amenities by name or to recommended airport amenities at SFO.
@@ -152,7 +152,7 @@ tools:
       ORDER BY (embedding <=> $1)
       LIMIT 5
   search_policies:
-    kind: cloud-sql-postgres-generic
+    kind: postgres-sql
     source: my-pg-instance
     description: |
       Use this tool to search for cymbal air passenger policy.
@@ -171,7 +171,7 @@ tools:
       ORDER BY (embedding <=> $1)
       LIMIT 5
   insert_ticket:
-    kind: cloud-sql-postgres-generic
+    kind: postgres-sql
     source: my-pg-instance
     description: |
       Use this tool to book a flight ticket for the user.
@@ -253,7 +253,7 @@ tools:
         $9
       );
   list_tickets:
-    kind: cloud-sql-postgres-generic
+    kind: postgres-sql
     source: my-pg-instance
     description: |
       Use this tool to list a user's flight tickets.
