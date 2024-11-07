@@ -273,7 +273,16 @@ def generate_list_tickets(client: aiohttp.ClientSession):
 
 # Tools for agent
 async def initialize_tools(client: aiohttp.ClientSession):
-    toolbox_client = ToolboxClient(BASE_URL, client)
+    toolbox_client = ToolboxClient(
+        BASE_URL,
+        client,
+    )
+    # TODO: Remove the hardcoded values and replace with actual values on successful login.
+    toolbox_client.set_bounded_params({
+            "user_id": "12345678900",
+            "user_name": "Someone",
+            "user_email": "something@somewhere.com",
+        })
     return await toolbox_client.load_toolset()
 
 
