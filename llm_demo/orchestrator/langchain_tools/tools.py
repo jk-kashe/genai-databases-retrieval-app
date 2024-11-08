@@ -278,11 +278,13 @@ async def initialize_tools(client: aiohttp.ClientSession):
         client,
     )
     # TODO: Remove the hardcoded values and replace with actual values on successful login.
-    toolbox_client.set_bounded_params({
+    toolbox_client.set_bounded_params(
+        {
             "user_id": "12345678900",
             "user_name": "Someone",
             "user_email": "something@somewhere.com",
-        })
+        }
+    )
     return await toolbox_client.load_toolset()
 
 
