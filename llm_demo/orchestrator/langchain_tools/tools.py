@@ -22,7 +22,7 @@ import google.oauth2.id_token  # type: ignore
 from google.auth import compute_engine  # type: ignore
 from google.auth.transport.requests import Request  # type: ignore
 from pydantic import BaseModel, Field
-from toolbox_langchain_sdk import ToolboxClient # type: ignore
+from toolbox_langchain_sdk import ToolboxClient  # type: ignore
 
 BASE_URL = os.getenv("BASE_URL", default="http://127.0.0.1:5000")
 CREDENTIALS = None
@@ -285,6 +285,48 @@ async def initialize_tools(client: aiohttp.ClientSession):
         }
     )
     return await toolbox_client.load_toolset()
+
+    # toolbox_client = ToolboxClient(
+    #     BASE_URL,
+    #     client,
+    # )
+    # # TODO: Remove the hardcoded values and replace with actual values on successful login.
+    # # toolbox_client.set_bounded_params(
+    # #     {
+    # #         "user_id": "12345678900",
+    # #         "user_name": "Someone",
+    # #         "user_email": "something@somewhere.com",
+    # #     }
+    # # )
+    # return await toolbox_client.load_toolset()
+
+    # toolbox_client = ToolboxClient(
+    #     BASE_URL,
+    #     client,
+    # )
+    # # TODO: Remove the hardcoded values and replace with actual values on successful login.
+    # # toolbox_client.set_bounded_params(
+    # #     {
+    # #         "user_id": "12345678900",
+    # #         "user_name": "Someone",
+    # #         "user_email": "something@somewhere.com",
+    # #     }
+    # # )
+    # return await toolbox_client.load_toolset()
+
+    # toolbox_client = ToolboxClient(
+    #     BASE_URL,
+    #     client,
+    # )
+    # # TODO: Remove the hardcoded values and replace with actual values on successful login.
+    # # toolbox_client.set_bounded_params(
+    # #     {
+    # #         "user_id": "12345678900",
+    # #         "user_name": "Someone",
+    # #         "user_email": "something@somewhere.com",
+    # #     }
+    # # )
+    # return await toolbox_client.load_toolset()
 
 
 def get_confirmation_needing_tools():
