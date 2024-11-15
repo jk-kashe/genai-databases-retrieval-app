@@ -24,7 +24,6 @@ from google.auth.transport.requests import Request  # type: ignore
 from pydantic import BaseModel, Field
 from toolbox_langchain_sdk import ToolboxClient
 
-
 BASE_URL = os.getenv("BASE_URL", default="http://127.0.0.1:5000")
 CREDENTIALS = None
 
