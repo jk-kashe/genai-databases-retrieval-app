@@ -276,7 +276,7 @@ async def initialize_tools(client: aiohttp.ClientSession):
         BASE_URL,
         client,
     )
-    # TODO: Remove the hardcoded values and replace with actual values on successful login.
+    # TODO: Remove the hardcoded bounded values with actual user data on successful login.
     toolbox_client.set_bounded_params(
         {
             "user_id": "12345678900",
@@ -285,48 +285,6 @@ async def initialize_tools(client: aiohttp.ClientSession):
         }
     )
     return await toolbox_client.load_toolset()
-
-    # toolbox_client = ToolboxClient(
-    #     BASE_URL,
-    #     client,
-    # )
-    # # TODO: Remove the hardcoded values and replace with actual values on successful login.
-    # # toolbox_client.set_bounded_params(
-    # #     {
-    # #         "user_id": "12345678900",
-    # #         "user_name": "Someone",
-    # #         "user_email": "something@somewhere.com",
-    # #     }
-    # # )
-    # return await toolbox_client.load_toolset()
-
-    # toolbox_client = ToolboxClient(
-    #     BASE_URL,
-    #     client,
-    # )
-    # # TODO: Remove the hardcoded values and replace with actual values on successful login.
-    # # toolbox_client.set_bounded_params(
-    # #     {
-    # #         "user_id": "12345678900",
-    # #         "user_name": "Someone",
-    # #         "user_email": "something@somewhere.com",
-    # #     }
-    # # )
-    # return await toolbox_client.load_toolset()
-
-    # toolbox_client = ToolboxClient(
-    #     BASE_URL,
-    #     client,
-    # )
-    # # TODO: Remove the hardcoded values and replace with actual values on successful login.
-    # # toolbox_client.set_bounded_params(
-    # #     {
-    # #         "user_id": "12345678900",
-    # #         "user_name": "Someone",
-    # #         "user_email": "something@somewhere.com",
-    # #     }
-    # # )
-    # return await toolbox_client.load_toolset()
 
 
 def get_confirmation_needing_tools():
