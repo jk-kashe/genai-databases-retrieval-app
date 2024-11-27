@@ -254,8 +254,8 @@ class Client(datastore.Client[Config]):
                         flight_number TEXT,
                         departure_airport TEXT,
                         arrival_airport TEXT,
-                        departure_time TIMESTAMP,
-                        arrival_time TIMESTAMP
+                        departure_time TEXT,
+                        arrival_time TEXT
                     )
                     """
                 )

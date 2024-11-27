@@ -190,8 +190,8 @@ def generate_insert_ticket(client: aiohttp.ClientSession):
         flight_number: str | None = None,
         departure_airport: str | None = None,
         arrival_airport: str | None = None,
-        departure_time: datetime | date | None = None,
-        arrival_time: datetime | date | None = None,
+        departure_time: str | None = None,
+        arrival_time: str | None = None,
     ):
         return f"Booking ticket on {airline} {flight_number}"
 
