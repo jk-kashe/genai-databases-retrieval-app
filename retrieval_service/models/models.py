@@ -102,8 +102,8 @@ class Ticket(BaseModel):
     flight_number: str
     departure_airport: str
     arrival_airport: str
-    departure_time: datetime.datetime
-    arrival_time: datetime.datetime
+    departure_time: str
+    arrival_time: str
 
 
 class Policy(BaseModel):
