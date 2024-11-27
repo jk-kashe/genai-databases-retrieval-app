@@ -20,6 +20,7 @@ from typing import Any, Literal, Optional
 import asyncpg
 from pgvector.asyncpg import register_vector
 from pydantic import BaseModel
+from sqlalchemy import text
 
 import models
 
@@ -462,8 +463,9 @@ class Client(datastore.Client[Config]):
     ):
         departure_time_datetime = datetime.strptime(departure_time, "%Y-%m-%d %H:%M:%S")
         arrival_time_datetime = datetime.strptime(arrival_time, "%Y-%m-%d %H:%M:%S")
-        results = await self.__pool.execute(
-            """
+        async with self.__async_engine.connect() as conn:
+            s = text(
+                """
                 INSERT INTO tickets (
                     user_id,
                     user_name,
@@ -475,22 +477,33 @@ class Client(datastore.Client[Config]):
                     departure_time,
                     arrival_time
                 ) VALUES (
-                   $1, $2, $3, $4, $5, $6, $7, $8, $9
+                    :user_id,
+                    :user_name,
+                    :user_email,
+                    :airline,
+                    :flight_number,
+                    :departure_airport,
+                    :arrival_airport,
+                    :departure_time,
+                    :arrival_time
                 );
-            """,
-            user_id,
-            user_name,
-            user_email,
-            airline,
-            flight_number,
-            departure_airport,
-            arrival_airport,
-            departure_time_datetime,
-            arrival_time_datetime,
-            timeout=10,
-        )
-        if results != "INSERT 0 1":
-            raise Exception("Ticket Insertion failure")
+            """
+            )
+            params = {
+                "user_id": user_id,
+                "user_name": user_name,
+                "user_email": user_email,
+                "airline": airline,
+                "flight_number": flight_number,
+                "departure_airport": departure_airport,
+                "arrival_airport": arrival_airport,
+                "departure_time": departure_time_datetime,
+                "arrival_time": arrival_time_datetime,
+            }
+            result = (await conn.execute(s, params)).mappings()
+            await conn.commit()
+            if not result:
+                raise Exception("Ticket Insertion failure")
 
     async def list_tickets(
         self,
