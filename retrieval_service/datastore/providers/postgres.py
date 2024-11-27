@@ -349,8 +349,7 @@ class Client(datastore.Client[Config]):
             """
             SELECT name, description, location, terminal, category, hour
             FROM amenities
-            WHERE (embedding <=> $1) < $2
-            ORDER BY (embedding <=> $1)
+            ORDER BY (embedding <=> $1) asc
             LIMIT $3
             """,
             query_embedding,
