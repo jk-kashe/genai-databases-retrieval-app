@@ -402,8 +402,7 @@ class Client(datastore.Client[Config]):
                 """
                 SELECT name, description, location, terminal, category, hour
                 FROM amenities
-                WHERE (embedding <=> :query_embedding) < :similarity_threshold
-                ORDER BY (embedding <=> :query_embedding)
+                ORDER BY (embedding <=> :query_embedding) ASC
                 LIMIT :top_k
                 """
             )
